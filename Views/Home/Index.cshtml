@@ -1,0 +1,146 @@
+﻿@model TechOpsDashboard.ViewModels.DashboardViewModel
+
+@{
+    ViewData["Title"] = "TechOps Dashboard";
+}
+
+<h1>TechOps Dashboard</h1>
+<p class="text-muted">Maintenance work order and equipment operations overview</p>
+
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card p-3">
+            <h5>Total Work Orders</h5>
+            <h2>@Model.TotalWorkOrders</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card p-3">
+            <h5>Open</h5>
+            <h2>@Model.OpenWorkOrders</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card p-3">
+            <h5>In Progress</h5>
+            <h2>@Model.InProgressWorkOrders</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card p-3">
+            <h5>Critical</h5>
+            <h2>@Model.CriticalWorkOrders</h2>
+        </div>
+    </div>
+</div>
+
+<form method="get" class="row mb-4">
+    <div class="col-md-3">
+        <input type="text" name="searchTerm" class="form-control" placeholder="Search work orders..." />
+    </div>
+
+    <div class="col-md-3">
+        <select name="statusFilter" class="form-select">
+            <option value="">All Statuses</option>
+            <option value="Open">Open</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+        </select>
+    </div>
+
+    <div class="col-md-3">
+        <select name="priorityFilter" class="form-select">
+            <option value="">All Priorities</option>
+            <option value="Critical">Critical</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+        </select>
+    </div>
+
+    <div class="col-md-2">
+        <select name="areaFilter" class="form-select">
+            <option value="">All Areas</option>
+            <option value="Inbound">Inbound</option>
+            <option value="Outbound">Outbound</option>
+            <option value="Storage">Storage</option>
+            <option value="Sortation">Sortation</option>
+        </select>
+    </div>
+
+    <div class="col-md-1">
+        <button type="submit" class="btn btn-primary w-100">Filter</button>
+    </div>
+</form>
+
+<h3>Work Orders</h3>
+
+<div class="table-responsive">
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Ticket</th>
+            <th>Equipment</th>
+            <th>Area</th>
+            <th>Assigned Technician</th>
+            <th>Priority</th>
+            <th>Status</th>
+            <th>Created</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var workOrder in Model.WorkOrders)
+        {
+            <tr>
+                <td>
+                    <strong>@workOrder.Title</strong><br />
+                    <small class="text-muted">@workOrder.IssueDescription</small>
+                </td>
+                <td>@workOrder.Equipment?.EquipmentName</td>
+                <td>@workOrder.Equipment?.Area</td>
+                <td>@workOrder.Technician?.FullName</td>
+                <td>
+                    @if (workOrder.Priority == "Critical")
+                    {
+                        <span class="badge bg-danger">Critical</span>
+                    }
+                    else if (workOrder.Priority == "High")
+                    {
+                        <span class="badge bg-warning text-dark">High</span>
+                    }
+                    else if (workOrder.Priority == "Medium")
+                    {
+                        <span class="badge bg-primary">Medium</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">@workOrder.Priority</span>
+                    }
+                </td>
+                <td>
+                    @if (workOrder.Status == "Open")
+                    {
+                        <span class="badge bg-danger">Open</span>
+                    }
+                    else if (workOrder.Status == "In Progress")
+                    {
+                        <span class="badge bg-warning text-dark">In Progress</span>
+                    }
+                    else if (workOrder.Status == "Completed")
+                    {
+                        <span class="badge bg-success">Completed</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">@workOrder.Status</span>
+                    }
+                </td>
+                <td>@workOrder.CreatedAt</td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
