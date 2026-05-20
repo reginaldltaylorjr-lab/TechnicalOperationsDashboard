@@ -110,19 +110,22 @@ Planned upgrades include:
 
 ## Main Dashboard View
 
-![Dashboard Screenshot](docs/images/dashboard-main.png)
+<img width="1721" height="932" alt="dashboard-main" src="https://github.com/user-attachments/assets/a7fab42a-c0a9-47b8-a15d-a5494dceb165" />
+
 
 ---
 
 ## Filtered Work Orders
 
-![Filtered Dashboard](docs/images/dashboard-filtered.png)
+<img width="1333" height="466" alt="dashboard-filtered" src="https://github.com/user-attachments/assets/056039df-1afe-46a1-b172-73e72294a917" />
+
 
 ---
 
 ## Critical Work Orders
 
-![Critical Dashboard](docs/images/dashboard-critical.png)
+<img width="1343" height="480" alt="dashboard-critical" src="https://github.com/user-attachments/assets/b999c138-e095-4cbf-b2de-e75a907309a3" />
+
 
 ---
 
