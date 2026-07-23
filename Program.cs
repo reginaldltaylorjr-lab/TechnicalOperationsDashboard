@@ -16,6 +16,8 @@ using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<TechOpsDbContext>();
 
+    context.Database.Migrate();
+
     if (!context.Technicians.Any())
     {
         var technicians = new List<Technician>
