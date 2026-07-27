@@ -1,3 +1,7 @@
+Live demo: https://techopsdashboard.azurewebsites.net/
+
+---
+
 # TechOps Dashboard
 
 A modern ASP.NET Core MVC operational maintenance and work-order management dashboard designed to simulate real-world technical operations environments, maintenance workflows, and enterprise equipment management systems.
